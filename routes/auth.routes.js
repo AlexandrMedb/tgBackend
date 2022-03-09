@@ -37,7 +37,6 @@ router.post(
     const user = new User({ email, password: hashedPassword, username })
 
    const newUser= await user.save()
-    console.log(newUser);
 
     const token = jwt.sign(
         { userId: newUser._id },
@@ -72,7 +71,6 @@ router.post(
 
     const {email, password} = req.body
 
-    console.log(email, password);
 
     const user = await User.findOne({ email })
 
@@ -91,6 +89,7 @@ router.post(
       config.get('jwtSecret'),
       { expiresIn: '1h' }
     )
+
 
     res.json({ token, userId: user.id })
 
