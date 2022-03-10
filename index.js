@@ -6,12 +6,14 @@ const { Server } = require("socket.io");
 // const path = require('path');
 const mongoose = require('mongoose');
 const config = require('config');
+const fileUpload = require("express-fileupload")
 
 
 const { createAdapter } = require("@socket.io/mongo-adapter");
 const { MongoClient } = require("mongodb");
 
 app.use(express.json({ extended: true }));
+app.use(fileUpload({}))
 
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/map', require('./routes/map.routes'));
@@ -19,9 +21,6 @@ app.use('/api/map', require('./routes/map.routes'));
 app.get('/', (req, res) => {
     res.send('hello world');
 });
-
-
-
 
 
 

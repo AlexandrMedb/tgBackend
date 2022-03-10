@@ -8,6 +8,7 @@ const schema = new Schema({
   cellSquareSize: {type: Number, required: true},
   widthInCells: {type: Number, required: true},
   heightInCells: {type: Number, required: true},
+  path: {type: String, default: ''},
 })
 
 module.exports = model('Map', schema)
