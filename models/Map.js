@@ -2,13 +2,11 @@ const {Schema, model, Types} = require('mongoose')
 
 const schema = new Schema({
   owner: {type: Types.ObjectId, ref: 'User'},
-  mapLink: {type: String, required: true},
-  mapWidthPx: {type: Number, required: true},
-  maHeightPx: {type: Number, required: false},
-  cellSquareSize: {type: Number, required: true},
-  widthInCells: {type: Number, required: true},
-  heightInCells: {type: Number, required: true},
-  path: {type: String, default: ''},
+  mapName:{type: String, required: true, unique: true},
+  mapWidthPx: {type: Number, required: false},
+  cellSquareSize: {type: Number, required: false},
+  widthInCells: {type: Number, required: false},
+  heightInCells: {type: Number, required: false},
 })
 
 module.exports = model('Map', schema)

@@ -3,7 +3,6 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-// const path = require('path');
 const mongoose = require('mongoose');
 const config = require('config');
 const fileUpload = require("express-fileupload")
@@ -13,7 +12,10 @@ const { createAdapter } = require("@socket.io/mongo-adapter");
 const { MongoClient } = require("mongodb");
 
 app.use(express.json({ extended: true }));
-app.use(fileUpload({}))
+app.use(fileUpload({
+    limits: { fileSize: 10 * 1024 * 1024 },
+}));
+app.use(express.static(`${__dirname}/${config.get('staticDir')}`));
 
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/map', require('./routes/map.routes'));
